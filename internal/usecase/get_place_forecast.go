@@ -9,8 +9,8 @@ import (
 )
 
 var (
-	ErrPostalCodeNotFound = errors.New("can not found zipcode")
-	ErrWeatherNotFound    = errors.New("can not found weather for that zipcode")
+	ErrPostalCodeNotFound = errors.New("cannot found zipcode")
+	ErrWeatherNotFound    = errors.New("weather not found for that zipcode")
 	ErrInvalidInput       = errors.New("invalid postalcode")
 )
 
@@ -42,7 +42,7 @@ func (uc *GetPlaceForecast) Execute(cep string) (PlaceForecastOutputDTO, error) 
 
 	placeDetails, err := uc.placeProvider.GetByCep(normalized)
 
-	if err != nil {
+	if err != nil || placeDetails.IsValid() != nil {
 		return outputDTO, ErrPostalCodeNotFound
 	}
 

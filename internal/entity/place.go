@@ -10,6 +10,13 @@ type Place struct {
 	PostalCode string `json:"postal_code"`
 }
 
+func (p *Place) IsValid() error {
+	if p.City == "" {
+		return errors.New("city not found")
+	}
+	return nil
+}
+
 func NormalizePostalCode(postalCode string) (string, error) {
 	var normalized_cep string
 
@@ -21,6 +28,10 @@ func NormalizePostalCode(postalCode string) (string, error) {
 
 	if normalized_cep == "" {
 		return "", errors.New("empty postal code")
+	}
+
+	if len(normalized_cep) != 8 {
+		return "", errors.New("invalid postalcode length")
 	}
 
 	return normalized_cep, nil

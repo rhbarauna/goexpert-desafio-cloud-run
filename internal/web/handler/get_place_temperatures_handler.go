@@ -22,7 +22,7 @@ func (h *GetPlaceTemperaturesHandler) Handle(w http.ResponseWriter, r *http.Requ
 	output, err := h.uc.Execute(cep)
 
 	if err != nil {
-		if err == usecase.ErrPostalCodeNotFound {
+		if err == usecase.ErrInvalidInput {
 			http.Error(w, err.Error(), http.StatusBadRequest)
 			return
 		}
