@@ -41,13 +41,4 @@ func (h *GetPlaceTemperaturesHandler) Handle(w http.ResponseWriter, r *http.Requ
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-
-	//montar o DTO de resposta
-	/*
-	   ​​​Em caso de falha, caso o CEP não seja encontrado:
-	   Código HTTP: 404
-	   Mensagem: can not found zipcode
-	   Deverá ser realizado o deploy no Google Cloud Run.
-
-	*/
 }
