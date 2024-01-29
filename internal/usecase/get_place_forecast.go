@@ -53,7 +53,7 @@ func (uc *GetPlaceForecast) Execute(cep string) (PlaceForecastOutputDTO, error) 
 	}
 
 	outputDTO.TempC = forecast.TempC
-	outputDTO.TempF = forecast.TempF
+	outputDTO.TempF = forecast.CalculateFahrenheit()
 	outputDTO.TempK = forecast.CalculateKelvin()
 
 	return outputDTO, nil

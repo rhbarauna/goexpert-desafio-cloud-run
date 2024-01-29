@@ -80,7 +80,6 @@ func (w *WeatherApi) GetWeather(city string) (entity.Weather, error) {
 	}
 
 	weather.TempC = weatherApiResp.Current.TempC
-	weather.TempF = weatherApiResp.Current.TempF
 
 	return weather, nil
 }

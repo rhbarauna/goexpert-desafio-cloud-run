@@ -6,6 +6,11 @@ type Weather struct {
 	TempK float64 `json:"temp_k"`
 }
 
+func (w *Weather) CalculateFahrenheit() float64 {
+	w.TempF = w.TempC*1.8 + 32
+	return w.TempF
+}
+
 func (w *Weather) CalculateKelvin() float64 {
 	w.TempK = w.TempC + 273
 	return w.TempK
