@@ -5,37 +5,15 @@ identifies the corresponding city and returns the current it's temperature in Ce
 
 The system is deployed on Google Cloud Run and can be accessed at: http://.
 
-## Usage
-
-The system can be tested via a http file contained at /api/get_temperatures.http
-OR get requests to http://localhost:8080?cep=12345678
-
-## Responses
-
-- In case of success:
-
-  - HTTP Code: 200
-  - Response Body: `{ "temp_C": 28.5, "temp_F": 28.5, "temp_K": 28.5 }`
-
-- In case of failure, if the ZIP code is not valid (with correct format):
-
-  - HTTP Code: 422
-  - Message: `invalid zipcode`
-
-- In case of failure, if the ZIP code is not found:
-  - HTTP Code: 404
-  - Message: `can not found zipcode`
-
-## Technologies Used
+### Technologies Used
 
 The system is built using the following technologies:
 
 - [Viper](https://github.com/spf13/viper): A Go library for managing application configurations.
 - [Wire](https://github.com/google/wire): A dependency injection code generator for Go.
-- [Wire](https://github.com/google/wire): A dependency injection code generator for Go.
 - Native HTTP library for handling requests.
 
-## Customizables
+### Customizables
 
 The system is currently using Viacep API to retrieve the city for a zipcode
 and WeatherAPI to retrieve the city forescast
@@ -70,3 +48,41 @@ Then, change the wire provider to provide the new weather provider
 ```go
 var setWeatherProviderInterface = wire.NewSet(/* needed arguments*/)
 ```
+
+### Usage
+
+To start the application, run the following command:
+
+```bash
+make run # OR make start
+```
+
+This command will start the application using Docker Compose and then run the main.go file.
+
+To execute all tests, run the following command:
+
+```bash
+make run-tests
+```
+
+### Request Examples
+
+The system can be tested via a http file contained at /api/get_temperatures.http
+OR use an HTTP client like curl or Postman or a Rest Client.
+curl -X GET http://localhost:8080
+
+### Responses
+
+- In case of success:
+
+  - HTTP Code: 200
+  - Response Body: `{ "temp_C": 28.5, "temp_F": 28.5, "temp_K": 28.5 }`
+
+- In case of failure, if the ZIP code is not valid (with correct format):
+
+  - HTTP Code: 422
+  - Message: `invalid zipcode`
+
+- In case of failure, if the ZIP code is not found:
+  - HTTP Code: 404
+  - Message: `can not found zipcode`
