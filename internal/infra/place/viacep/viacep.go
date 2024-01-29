@@ -7,8 +7,11 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/rhbarauna/goexpert-desafio-cloud-run/internal/infra/cep"
+	"github.com/rhbarauna/goexpert-desafio-cloud-run/internal/entity"
+	"github.com/rhbarauna/goexpert-desafio-cloud-run/internal/infra/place"
 )
+
+var _ place.PlaceProviderInterface = (*ViaCep)(nil)
 
 type ViaCep struct {
 	httpClient http.Client
@@ -33,9 +36,9 @@ func NewViaCep() *ViaCep {
 	}
 }
 
-func (v *ViaCep) getByCep(cep string) (cep.Place, error) {
+func (v *ViaCep) GetByCep(cep string) (entity.Place, error) {
 	req, err := http.NewRequest(http.MethodGet, fmt.Sprintf("http://viacep.com.br/ws/%s/json/", cep), nil)
-	place := cep.Place{}
+	place := entity.Place{}
 
 	if err != nil {
 		log.Printf("Falha ao montar a requisição ViaCep. %s\n", err.Error())
@@ -64,6 +67,7 @@ func (v *ViaCep) getByCep(cep string) (cep.Place, error) {
 	}
 
 	place.City = viacepResp.Localidade
+	place.PostalCode = viacepResp.Cep
 
 	return place, nil
 }

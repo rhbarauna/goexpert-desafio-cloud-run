@@ -7,8 +7,12 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/rhbarauna/goexpert-desafio-cloud-run/configs"
+	"github.com/rhbarauna/goexpert-desafio-cloud-run/internal/entity"
 	"github.com/rhbarauna/goexpert-desafio-cloud-run/internal/infra/weather"
 )
+
+var _ weather.WeatherProviderInterface = (*WeatherApi)(nil)
 
 type WeatherApiResponse struct {
 	Location struct {
@@ -37,24 +41,24 @@ type WeatherApi struct {
 	token      string
 }
 
-func NewWeatherAPI(tkn string) *WeatherApi {
+func NewWeatherAPI(config *configs.Config) *WeatherApi {
 	return &WeatherApi{
 		httpClient: http.Client{},
-		token:      tkn,
+		token:      config.WEATHER_API_KEY,
 	}
 }
 
-func (w *WeatherApi) getWeather(city string) (weather.Weather, error) {
+func (w *WeatherApi) GetWeather(city string) (entity.Weather, error) {
 	req_str := fmt.Sprintf("http://api.weatherapi.com/v1/current.json?key=%s&q=%s&aqi=no", w.token, city)
 	req, err := http.NewRequest(http.MethodGet, req_str, nil)
-	weather := weather.Weather{}
+	weather := entity.Weather{}
 
 	if err != nil {
 		log.Printf("Falha ao montar a requisição WeatherApi. %s\n", err.Error())
 		return weather, err
 	}
 
-	resp, err := v.httpClient.Do(req)
+	resp, err := w.httpClient.Do(req)
 
 	if err != nil {
 		log.Printf("Falha ao executar a requisição WeatherApi. %s\n", err.Error())
@@ -75,10 +79,8 @@ func (w *WeatherApi) getWeather(city string) (weather.Weather, error) {
 		return weather, err
 	}
 
-	weather.SetTemperatures(
-		weatherApiResp.Current.TempC,
-		weatherApiResp.Current.TempF,
-	)
+	weather.TempC = weatherApiResp.Current.TempC
+	weather.TempF = weatherApiResp.Current.TempF
 
 	return weather, nil
 }
