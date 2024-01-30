@@ -3,7 +3,8 @@
 This is a system that, given a valid 8-digit ZIP code,
 identifies the corresponding city and returns the current it's temperature in Celsius, Fahrenheit, and Kelvin.
 
-The system is deployed on Google Cloud Run and can be accessed at: http://.
+The system is deployed on Google Cloud Run and can be accessed at:
+`https://goexpert-cloudrun-weather-api-pwvfjx4fpq-rj.a.run.app/?cep=89216356`
 
 ### Technologies Used
 
@@ -63,6 +64,14 @@ To execute all tests, run the following command:
 
 ```bash
 make run-tests
+```
+
+### Docker
+
+The system can be tested via docker:
+
+```bash
+docker-compose up
 ```
 
 ### Request Examples
