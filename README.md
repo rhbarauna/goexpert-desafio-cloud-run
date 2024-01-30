@@ -52,6 +52,8 @@ var setWeatherProviderInterface = wire.NewSet(/* needed arguments*/)
 
 ### Usage
 
+## **Important: Set environment variables in .env before running the project.**
+
 To start the application, run the following command:
 
 ```bash
