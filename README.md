@@ -3,8 +3,7 @@
 This is a system that, given a valid 8-digit ZIP code,
 identifies the corresponding city and returns the current it's temperature in Celsius, Fahrenheit, and Kelvin.
 
-The system is deployed on Google Cloud Run and can be accessed at:
-`https://goexpert-cloudrun-weather-api-pwvfjx4fpq-rj.a.run.app/?cep=89216356`
+The system is deployed on Google Cloud Run and can be accessed at `https://goexpert-cloudrun-weather-api-pwvfjx4fpq-rj.a.run.app`
 
 ### Technologies Used
 
@@ -78,9 +77,35 @@ docker-compose up
 
 ### Request Examples
 
+**Development**
 The system can be tested via a http file contained at /api/get_temperatures.http
 OR use an HTTP client like curl or Postman or a Rest Client.
-curl -X GET http://localhost:8080
+
+### 200
+
+curl -X GET http://localhost:8080?cep=89216310
+
+### 404
+
+curl -X GET http://localhost:8080?cep=89216369
+
+### 422
+
+curl -X GET http://localhost:8080?cep=892169
+
+**Production**
+
+### 200
+
+curl -X GET https://goexpert-cloudrun-weather-api-pwvfjx4fpq-rj.a.run.app?cep=89216310
+
+### 404
+
+curl -X GET https://goexpert-cloudrun-weather-api-pwvfjx4fpq-rj.a.run.app?cep=89216369
+
+### 422
+
+curl -X GET https://goexpert-cloudrun-weather-api-pwvfjx4fpq-rj.a.run.app?cep=892169
 
 ### Responses
 
@@ -96,4 +121,4 @@ curl -X GET http://localhost:8080
 
 - In case of failure, if the ZIP code is not found:
   - HTTP Code: 404
-  - Message: `can not found zipcode`
+  - Message: `zipcode can not found`

@@ -23,7 +23,7 @@ func (h *GetPlaceTemperaturesHandler) Handle(w http.ResponseWriter, r *http.Requ
 
 	if err != nil {
 		if err == usecase.ErrInvalidInput {
-			http.Error(w, err.Error(), http.StatusBadRequest)
+			http.Error(w, err.Error(), http.StatusUnprocessableEntity)
 			return
 		}
 

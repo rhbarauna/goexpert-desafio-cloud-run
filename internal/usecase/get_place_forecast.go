@@ -9,7 +9,7 @@ import (
 )
 
 var (
-	ErrPostalCodeNotFound = errors.New("cannot found zipcode")
+	ErrPostalCodeNotFound = errors.New("zipcode not found")
 	ErrWeatherNotFound    = errors.New("weather not found for that zipcode")
 	ErrInvalidInput       = errors.New("invalid postalcode")
 )
