@@ -77,7 +77,7 @@ docker-compose up
 
 ### Request Examples
 
-**Development**
+#### Development
 The system can be tested via a http file contained at /api/get_temperatures.http
 OR use an HTTP client like curl or Postman or a Rest Client.
 
@@ -93,7 +93,9 @@ curl -X GET http://localhost:8080?cep=89216369
 
 curl -X GET http://localhost:8080?cep=892169
 
-**Production**
+
+#### Production
+
 
 ### 200
 
