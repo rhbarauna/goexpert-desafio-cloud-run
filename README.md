@@ -49,7 +49,7 @@ Then, change the wire provider to provide the new weather provider
 var setWeatherProviderInterface = wire.NewSet(/* needed arguments*/)
 ```
 
-### Usage
+# Usage
 
 ## **Important: Set environment variables in .env before running the project.**
 
@@ -75,41 +75,41 @@ The system can be tested via docker:
 docker-compose up
 ```
 
-### Request Examples
+## Request Examples
 
-#### Development
+### Development
 The system can be tested via a http file contained at /api/get_temperatures.http
 OR use an HTTP client like curl or Postman or a Rest Client.
 
-### 200
+#### 200
 
 curl -X GET http://localhost:8080?cep=89216310
 
-### 404
+#### 404
 
 curl -X GET http://localhost:8080?cep=89216369
 
-### 422
+#### 422
 
 curl -X GET http://localhost:8080?cep=892169
 
 
-#### Production
+### Production
 
 
-### 200
+#### 200
 
 curl -X GET https://goexpert-cloudrun-weather-api-pwvfjx4fpq-rj.a.run.app?cep=89216310
 
-### 404
+#### 404
 
 curl -X GET https://goexpert-cloudrun-weather-api-pwvfjx4fpq-rj.a.run.app?cep=89216369
 
-### 422
+#### 422
 
 curl -X GET https://goexpert-cloudrun-weather-api-pwvfjx4fpq-rj.a.run.app?cep=892169
 
-### Responses
+#### Responses
 
 - In case of success:
 
