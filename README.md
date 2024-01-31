@@ -3,10 +3,8 @@
 This is a system that, given a valid 8-digit ZIP code,
 identifies the corresponding city and returns the current it's temperature in Celsius, Fahrenheit, and Kelvin.
 
-The system is deployed on Google Cloud Run and can be accessed at `https://goexpert-cloudrun-weather-api-pwvfjx4fpq-rj.a.run.app`
 
 ### Technologies Used
-
 The system is built using the following technologies:
 
 - [Viper](https://github.com/spf13/viper): A Go library for managing application configurations.
@@ -94,6 +92,7 @@ curl -X GET http://localhost:8080?cep=892169
 
 ### Production
 
+The system is deployed on Google Cloud Run and can be accessed at `https://goexpert-cloudrun-weather-api-pwvfjx4fpq-rj.a.run.app`
 
 #### 200
 
