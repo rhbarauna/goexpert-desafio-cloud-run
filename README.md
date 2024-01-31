@@ -47,15 +47,7 @@ Then, change the wire provider to provide the new weather provider
 var setWeatherProviderInterface = wire.NewSet(/* needed arguments*/)
 ```
 
-# Usage
-
-## **Important: Set environment variables in .env before running the project.**
-
-To start the application, run the following command:
-
-```bash
-make run # OR make start
-```
+# Tests
 
 This command will start the application using Docker Compose and then run the main.go file.
 
@@ -65,7 +57,7 @@ To execute all tests, run the following command:
 make run-tests
 ```
 
-## Building project
+## Building the project's image
 
 ## **Important: Set environment variables in .env before running the project.**
 
@@ -78,7 +70,6 @@ make build-prod IMAGE_NAME=your_image_name # if empty. weather-api-image:latest 
 ```
 
 ### Development
-
 The system can be tested via a http file contained at /api/get_temperatures.http
 OR use an HTTP client like curl or Postman or a Rest Client.
 
@@ -86,6 +77,10 @@ OR use an HTTP client like curl or Postman or a Rest Client.
 
 ```bash
 docker-compose up
+# OR
+make run
+# OR
+make start
 ```
 
 #### 200
