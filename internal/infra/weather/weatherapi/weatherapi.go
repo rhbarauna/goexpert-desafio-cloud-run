@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"net/url"
 
 	"github.com/rhbarauna/goexpert-desafio-cloud-run/configs"
 	"github.com/rhbarauna/goexpert-desafio-cloud-run/internal/entity"
@@ -49,7 +50,7 @@ func NewWeatherAPI(config *configs.Config) *WeatherApi {
 }
 
 func (w *WeatherApi) GetWeather(city string) (entity.Weather, error) {
-	req_str := fmt.Sprintf("http://api.weatherapi.com/v1/current.json?key=%s&q=%s&aqi=no", w.token, city)
+	req_str := fmt.Sprintf("http://api.weatherapi.com/v1/current.json?key=%s&q=%s&aqi=no", w.token, url.QueryEscape(city))
 	req, err := http.NewRequest(http.MethodGet, req_str, nil)
 	weather := entity.Weather{}
 
@@ -68,7 +69,7 @@ func (w *WeatherApi) GetWeather(city string) (entity.Weather, error) {
 
 	if resp.StatusCode != http.StatusOK {
 		log.Println("Erro na resposta da API:", resp.Status)
-		return weather, errors.New("Erro na resposta da API WeatherApi")
+		return weather, errors.New("erro na resposta da API WeatherApi")
 	}
 
 	var weatherApiResp WeatherApiResponse
