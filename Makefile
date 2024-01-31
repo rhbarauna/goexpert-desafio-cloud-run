@@ -1,4 +1,6 @@
 .PHONY: start run run-tests
+# Variável para armazenar o parâmetro
+IMAGE_NAME ?= weather-api-image:latest
 
 start:
 	@echo "Starting project..."
@@ -6,5 +8,8 @@ start:
 
 run: start
 
+build-prod: 
+	@echo "Building docker image $(IMAGE_NAME)..."
+	docker build -t $(IMAGE_NAME) -f Dockerfile.prod .
 run-tests:
 	go test ./... -v
