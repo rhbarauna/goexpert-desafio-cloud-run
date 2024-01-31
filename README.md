@@ -65,7 +65,7 @@ To execute all tests, run the following command:
 make run-tests
 ```
 
-## Building project
+## Building the project's image
 
 ## **Important: Set environment variables in .env before running the project.**
 
