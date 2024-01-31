@@ -67,19 +67,17 @@ To execute all tests, run the following command:
 make run-tests
 ```
 
-### Docker
-
-The system can be tested via docker:
-
-```bash
-docker-compose up
-```
-
 ## Request Examples
 
 ### Development
 The system can be tested via a http file contained at /api/get_temperatures.http
 OR use an HTTP client like curl or Postman or a Rest Client.
+
+### Docker
+
+```bash
+docker-compose up
+```
 
 #### 200
 
